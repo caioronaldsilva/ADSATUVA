@@ -1,3 +1,7 @@
+// FUNCTIONS MUST EXIST BEFORE THEY ARE CALLED
+// \n CREATES A NEW LINE
+// & PASSES THE VARIABLE ADDRESS TO scanf
+
 #include <stdio.h>
 
 int soma(int a, int b) {
