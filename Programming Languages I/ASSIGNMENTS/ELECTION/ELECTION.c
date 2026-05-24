@@ -14,7 +14,7 @@ Caio Ronald Carlos da Silva
 
 #include <stdio.h>
 
-// 2 - VARIÁVEIS PARA REGISTRO DE CANDIDATOS E ALTERNATIVAS DE VOTOS
+// 2 - VARIÁVEIS QUE SERÃO USADAS EM TODO O PROGRAMA
 
 int candidato1    = 0;
 int candidato2    = 0;
@@ -25,6 +25,8 @@ int fim           = 1;
 int voto;
 int vencedor;
 int totalDeEleitores;
+int votoProtII;
+char votoProtI;
 
 // 3 - FUNÇÃO PARA O RESULTADO
 
@@ -38,10 +40,14 @@ int resultado() {
 
         vencedor = 2;
     
-    } else {
+    } else if (candidato3 > candidato1 && candidato3 > candidato2) {
     
         vencedor = 3;
     
+    } else {
+
+        vencedor = 0;
+
     };
 
     totalDeEleitores = candidato1    +
@@ -50,15 +56,26 @@ int resultado() {
                        votosEmBranco +
                        votosNulos;
 
+    printf("\n* Resultado das Eleições *\n");
+
     printf("\nTotal de votos para o Candidato 1: %d.\n", candidato1);
     printf("Total de votos para o Candidato 2: %d.\n", candidato2);
     printf("Total de votos para o Candidato 3: %d.\n", candidato3);
 
-    printf("\nTotal de votos em branco: %d.\n", votosEmBranco);
-    printf("Total de votos nulos: %d.\n", votosNulos);
+    printf("\nTotal de votos em Branco: %d.\n", votosEmBranco);
+    printf("Total de votos Nulos: %d.\n", votosNulos);
 
-    printf("\nCandidato vencedor: Candidato %d\n", vencedor);
-    printf("Total de Eleitores: %d\n", totalDeEleitores);
+    printf("\nTotal de Eleitores: %d\n", totalDeEleitores);
+
+    if (vencedor == 0) {
+
+        printf("\nResultado: Houve um Empate!\n");
+
+    } else {
+
+        printf("\nResultado: O Candidato %d venceu!\n", vencedor);
+
+    }
 
 };
 
@@ -66,19 +83,26 @@ int resultado() {
 
 int votacao() {
 
-    printf("*Bem vindo ao Programa de Votação para as Eleições*\n");
+    printf("* Bem vindo ao Programa de Votação para as Eleições (feito em C) *\n");
     printf("\nTutorial:\n");
-    printf("\nPara Votar no Candidato 1: Digite 1");
-    printf("\nPara Votar no Candidato 2: Digite 2");
-    printf("\nPara Votar no Candidato 3: Digite 3");
-    printf("\nPara Votar em Branco:      Digite 4");
-    printf("\nPara Votar Nulo:           Digite qualquer número após o 4\n");
+    printf("\nDigite 1 para Votar no Candidato 1");
+    printf("\nDigite 2 para Votar no Candidato 2");
+    printf("\nDigite 3 para Votar no Candidato 3");
+    printf("\nDigite 4 para Votar em Branco");
     printf("\nDigite 0 para Encerrar a Votação e Ver o Resultado\n");
+
+    printf("\nObs.: Caso digite uma opção inexistente (ex.: 5), seu voto será anulado!\n");
 
     do {
         
         printf("\nVote no Seu Candidato:\n");
-        scanf("%d", &voto);
+        
+        while (scanf("%d%c", &voto, &votoProtI) != 2 || votoProtI != '\n') {
+
+            while ((votoProtII = getchar()) != '\n' && votoProtII != EOF);
+            printf("\nEssa tentativa não é válida! Vote novamente:\n");
+
+        };
 
         switch (voto) {
 
