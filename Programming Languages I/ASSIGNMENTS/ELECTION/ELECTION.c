@@ -1,20 +1,25 @@
 /*
 
-Trabalho de Linguagem de Programação I
 Universidade Veiga de Almeida
+Trabalho de Linguagem de Programação I
 
-Programa de Eleição
+Programa para Apuração de Eleição
 
 Caio Ronald Carlos da Silva
+Araruama - RJ
 2026
 
 */
 
-// 1 - BIBLIOTECAS NECESSÁRIAS
+// 1 - BIBLIOTECAS NECESSÁRIAS:
+// O stdio.h SERVE PARA LER E EXIBIR DADOS.
+// USAREMOS A BIBLIOTECA PARA A INTERAÇÃO COM O USUÁRIO.
 
 #include <stdio.h>
 
-// 2 - VARIÁVEIS QUE SERÃO USADAS EM TODO O PROGRAMA
+// 2 - VARIÁVEIS QUE SERÃO USADAS :
+// DECLAREI TODAS AS VARIÁVEIS NO MESMO LUGAR
+// PARA MELHORAR A ORGANIZAÇÃO DO CÓDIGO.
 
 int candidato1    = 0;
 int candidato2    = 0;
@@ -28,9 +33,14 @@ int totalDeEleitores;
 int votoProtII;
 char votoProtI;
 
-// 3 - FUNÇÃO PARA O RESULTADO
+// 3 - FUNÇÃO PARA A APURAÇÃO DA VOTAÇÃO:
+// AQUI, VERIFICAMOS QUEM É O VENCEDOR OU SE HÁ EMPATE
+// ATRAVÉS DA COMPARAÇÃO ENTRE OS VOTOS DE CADA CANDIDATO.
+// EM SEGUIDA, DEFINIMOS O TOTAL DE ELEITORES SOMANDO OS
+// VOTOS DE CADA CANDIDATO, OS VOTOS EM BRANCO E OS NULOS.
+// USAMOS printf PARA MOSTRAR AS INFORMAÇÕES AO USUÁRIO
 
-int resultado() {
+void resultado() {
 
     if (candidato1 > candidato2 && candidato1 > candidato3) {
 
@@ -48,7 +58,7 @@ int resultado() {
 
         vencedor = 0;
 
-    };
+    }
 
     totalDeEleitores = candidato1    +
                        candidato2    +
@@ -77,13 +87,17 @@ int resultado() {
 
     }
 
-};
+}
 
-// 4 - FUNÇÃO PARA A VOTAÇÃO
+// 4 - FUNÇÃO PARA A VOTAÇÃO:
+// PARA MELHORAR O USO DO PROGRAMA, EU FIZ UM PEQUENO TUTORIAL.
+// APÓS O VOTO DO USUÁRIO, O scanf GUARDA O DADO NA VARIÁVEL
+// (É FEITA UMA FILTRAGEM DO VOTO PARA NÃO PERMITIR CARACTERES INVÁLIDOS).
+// O SWITCH ENCERRA A VOTAÇÃO OU GUARDA O VOTO NA VARIÁVEL CORRETA.
 
-int votacao() {
+void votacao() {
 
-    printf("* Bem vindo ao Programa de Votação para as Eleições (feito em C) *\n");
+    printf("* Bem vindo ao Programa de Votação e Apuração para Eleições (feito em C) *\n");
     printf("\nTutorial:\n");
     printf("\nDigite 1 para Votar no Candidato 1");
     printf("\nDigite 2 para Votar no Candidato 2");
@@ -93,7 +107,7 @@ int votacao() {
 
     printf("\nObs.: Caso digite uma opção inexistente (ex.: 5), seu voto será anulado!\n");
 
-    do {
+    while (fim == 1) {
         
         printf("\nVote no Seu Candidato:\n");
         
@@ -102,7 +116,7 @@ int votacao() {
             while ((votoProtII = getchar()) != '\n' && votoProtII != EOF);
             printf("\nEssa tentativa não é válida! Vote novamente:\n");
 
-        };
+        }
 
         switch (voto) {
 
@@ -133,14 +147,16 @@ int votacao() {
 
         }
 
-    } while (fim == 1);
+    }
 
-};
+}
 
-// 5 - FUNÇÃO MAIN
+// 5 - FUNÇÃO MAIN:
+// CHAMA A FUNÇÃO votacao() PARA INICIAR A LÓGICA DO PROGRAMA.
 
 int main () {
 
     votacao();
+    return 0;
 
-};
+}
